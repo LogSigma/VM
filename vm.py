@@ -39,6 +39,9 @@ df = pd.merge(df, dfss, how='left', on = "LOTID_ID")
 
 df['STD_y'] = df['STD_y'].fillna(method='ffill')
 
+df['STD_y'] = df['STD_y'].shift(1).fillna(0)
+dfs['STD'] = dfs['STD'].shift(1).fillna(0)
+
 df['Y_PID'+str(k)] = df['Y_PID'] + df['STD_y']
 dfs['Y_PID'+str(k)] = dfs['Y_PID'] + dfs['STD']
 
